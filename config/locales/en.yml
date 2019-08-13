@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  product:
+    upload_csv_files: "Upload Csv File"

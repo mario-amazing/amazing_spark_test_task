@@ -1,0 +1,7 @@
+<% content_for :page_title do %>
+  Upload Csv Files
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to I18n.t('product.upload_csv_files'), new_object_url, { class: "btn-success", icon: 'add', id: 'upload_csv_files' } %>
+<% end if can?(:upload_csv_files, Spree::Product) %>

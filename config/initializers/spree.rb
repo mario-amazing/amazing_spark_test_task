@@ -16,4 +16,4 @@ Spree.config do |config|
 end
 
 Spree.user_class = "Spree::User"
-Spree::BackendConfiguration::ORDER_TABS << :upload_csv_files
+Spree::BackendConfiguration::PRODUCT_TABS << :upload_csv_files
