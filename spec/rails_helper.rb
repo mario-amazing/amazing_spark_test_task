@@ -6,6 +6,7 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require "paperclip/matchers"
+require 'support/factory_bot'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -64,6 +65,7 @@ RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers
   config.file_fixture_path = "spec/fixtures"
 end
+RSpec::Matchers.define_negated_matcher :not_change, :change
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe FileUploader do
   describe '.call' do
-    let(:csv_file) { File.new(Rails.root + 'spec/fixtures/csv/products/sample.csv') }
+    let(:csv_file) { File.new(Rails.root + 'spec/fixtures/csv/products/valid_product_file.csv') }
 
     let(:params) do
       {
