@@ -5,3 +5,22 @@
 <% content_for :page_actions do %>
   <%= render partial: 'file_upload_form' %>
 <% end if can?(:upload_csv_files, Spree::Product) %>
+
+<% if @collection.any? %>
+  <table class="table" id="listing_csv_product_files">
+    <thead>
+      <tr data-hook="admin_products_index_headers">
+        <th><%= I18n.t('uploaded_files.file') %></th>
+        <th><%= I18n.t('uploaded_files.status') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @collection.each do |file| %>
+          <tr  id="<%= spree_dom_id file %>" data-hook="admin_products_index_rows" class="<%= cycle('odd', 'even') %>">
+            <td class="file"><%= file.file_file_name %></td>
+            <td class="status"><%= file.status %> </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

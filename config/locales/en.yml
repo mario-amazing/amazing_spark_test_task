@@ -33,6 +33,9 @@ en:
   hello: "Hello world"
   product:
     upload_csv_files: "Upload Csv File"
+  uploaded_files:
+    file: 'Product File'
+    status: 'Status'
   helpers:
     upload: 'Upload'
     success: 'Success'
