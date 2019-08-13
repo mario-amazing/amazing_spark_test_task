@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   Spree::Core::Engine.routes.draw do
     namespace :admin do
       get :upload_csv_files, to: 'products#upload_csv_files'
+      post :upload_files, to: 'upload_files#create'
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

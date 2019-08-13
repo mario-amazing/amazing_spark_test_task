@@ -11,6 +11,7 @@
 /log/*
 /tmp/*
 /public/spree/*
+/public/system
 !/log/.keep
 !/tmp/.keep
 

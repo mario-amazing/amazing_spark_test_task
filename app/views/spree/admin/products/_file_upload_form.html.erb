@@ -1,0 +1,5 @@
+<%= form_for @uploaded_file, url: admin_upload_files_path, html: { multipart: true } do |form| %>
+  <%= form.hidden_field :model_type %>
+  <%= form.file_field :file, { style: 'display:inline !important;', accept: '.csv', :required => true} %>
+  <%= form.submit I18n.t('helpers.upload'), { class: 'btn btn-success', id: 'upload_csv_files' } %>
+<% end %>

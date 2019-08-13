@@ -34,11 +34,18 @@ gem 'jbuilder', '~> 2.5'
 gem 'spree', '~> 3.4.0'
 gem 'spree_auth_devise', '~> 3.3'
 gem 'spree_gateway', '~> 3.3'
+gem "paperclip", "~> 5.2.1"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 3.8'
+  gem 'factory_bot'
+end
+
+group :test do
+  gem 'shoulda-matchers'
 end
 
 group :development do
