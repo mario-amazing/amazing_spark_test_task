@@ -5,7 +5,12 @@ module Spree
         file_uploader = FileUploader.call(uploaded_file_params)
 
         errors = file_uploader.errors
-        errors.present? ? flash[:error] = errors.messages : flash[:success] = I18n.t('helpers.success')
+        if errors.blank?
+          ProcessProductCsvFilesWorker.perform_async
+          flash[:success] = I18n.t('helpers.success')
+        else
+          flash[:error] = errors.messages
+        end
         redirect_back(fallback_location: root_path)
       end
 
