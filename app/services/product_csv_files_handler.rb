@@ -5,8 +5,11 @@ class ProductCsvFilesHandler
     CSV_SPLITER = ';'.freeze
 
     def call
+      # find_each will resolve out of memory issue
       UploadedFile.pending.find_each do |uploaded_file|
         ActiveRecord::Base.transaction do
+          # using the pessimistic lock to prevent the multi-trading issue. Alternative
+          # variant is optimistic lock(depends on the task)
           uploaded_file.lock!
           uploaded_file.update_attributes(status: 'in_progress')
 
@@ -16,6 +19,8 @@ class ProductCsvFilesHandler
         end
 
       rescue StandardError => e
+        # Could be moved into transaction if need anyway process file with
+        # errors
         uploaded_file.update_attributes(status: 'error')
       end
     end
@@ -23,6 +28,7 @@ class ProductCsvFilesHandler
     private
 
     def handle_products(file_path)
+      # foreach will resolve "handle huge files without freezing the whole app for hours"
       CSV.foreach(file_path, headers: true, header_converters: :symbol, col_sep: CSV_SPLITER) do |row|
         shipping_category = Spree::ShippingCategory.find_or_create_by(name: 'test_task')
         product = Spree::Product.create!(
